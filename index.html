@@ -61,14 +61,52 @@
   (function(d, t) {
       var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
       v.onload = function() {
+        // Load the Voiceflow chat widget
         window.voiceflow.chat.load({
-          verify: { projectID: '66b7c6329aa5c5d732078520' },
+          verify: { projectID: '66a623a8f0a219b6f4ee836b' },
           url: 'https://general-runtime.voiceflow.com',
-          versionID: 'production'
+          versionID: 'production',
+          events: {
+            // Triggered when the chat is loaded
+            onReady: function() {
+              // Add a subtle pop effect after the widget is ready
+              var chatIcon = document.querySelector('.vf-chat-icon'); // Adjust selector if needed
+              if (chatIcon) {
+                chatIcon.classList.add('highlight-icon');
+                
+                // Remove the highlight after a delay
+                setTimeout(function() {
+                  chatIcon.classList.remove('highlight-icon');
+                }, 2000); // Highlight duration (2 seconds)
+              }
+            }
+          }
         });
       }
-      v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+      v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
+      v.type = "text/javascript"; 
+      s.parentNode.insertBefore(v, s);
   })(document, 'script');
 </script>
+<style>
+  /* Example CSS for a subtle pop effect */
+  @keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  
+  @keyframes shake {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-5px, 0); }
+    50% { transform: translate(5px, 0); }
+    75% { transform: translate(-5px, 0); }
+    100% { transform: translate(0, 0); }
+  }
+
+  .highlight-icon {
+    animation: pop 0.6s ease, shake 0.6s ease 0.6s; /* Combine animations for pop and shake */
+  }
+</style>
   </body>
 </html>
