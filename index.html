@@ -57,6 +57,18 @@
       <a class="footer-link" href="https://github.com/antonov86/cv">Website</a>
       <p class="bottom-text">© 2022 Anton Antonov</p>
     </div>
+<style>
+  @keyframes pop-up {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  
+  .buzz-icon {
+    animation: pop-up 0.6s ease-in-out;
+  }
+</style>
+
 <script type="text/javascript">
   (function(d, t) {
       var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
@@ -67,15 +79,15 @@
           versionID: 'production',
           events: {
             onReady: function() {
-              // Trigger the buzz/move effect after the chat widget is loaded
+              // Trigger the pop-up effect after the chat widget is loaded
               var chatIcon = document.querySelector('.vf-chat-icon'); // Adjust selector if needed
               if (chatIcon) {
                 chatIcon.classList.add('buzz-icon'); // Add the animation class
                 
-                // Optional: Remove the buzz effect after a few seconds
+                // Optional: Remove the pop-up effect after it completes (after 0.6s)
                 setTimeout(function() {
                   chatIcon.classList.remove('buzz-icon');
-                }, 3000); // Buzz for 3 seconds
+                }, 600);
               }
             }
           }
